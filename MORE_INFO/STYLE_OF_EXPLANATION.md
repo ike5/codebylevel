@@ -8,7 +8,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 0 — Narrative
+## 0: Narrative
 
 **Focus:** Storytelling, analogy, and context-driven explanation.  
 **Best for:** Beginners, readers new to the topic.  
@@ -19,7 +19,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 1 — Structural
+## 1: Structural
 
 **Focus:** Relationships, hierarchies, and architecture.  
 **Best for:** Visual learners, those familiar with object models or diagrams.  
@@ -30,7 +30,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 2 — Procedural
+## 2: Procedural
 
 **Focus:** Step-by-step processes and workflows.  
 **Best for:** Learners who benefit from clear instructions and linear progression.  
@@ -41,7 +41,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 3 — Associative
+## 3: Associative
 
 **Focus:** Comparisons to previously learned or better-known concepts.  
 **Best for:** Developers transitioning between languages or technologies.  
@@ -52,7 +52,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 4 — Logical
+## 4: Logical
 
 **Focus:** Rule-based reasoning, causality, and decision flow.  
 **Best for:** Abstract thinkers, debuggers, and problem-solvers.  
@@ -63,7 +63,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 5 — Pedagogical
+## 5: Pedagogical
 
 **Focus:** Teaching through questions, contrast, and reflection.  
 **Best for:** Mentors, educators, and curious learners.  
@@ -74,7 +74,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 6 — Exploratory
+## 6: Exploratory
 
 **Focus:** Experimentation, open-ended learning, and discovery.  
 **Best for:** Self-guided learners and tinkerers.  
@@ -85,7 +85,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 7 — Critical
+## 7: Critical
 
 **Focus:** Performance, trade-offs, edge cases, and failure modes.  
 **Best for:** Experts, architects, and those making technical decisions.  
@@ -96,7 +96,7 @@ The `Z` value ranges from `0` to `8`, each corresponding to a distinct instructi
 
 ---
 
-## 8 — Historical
+## 8: Historical
 
 **Focus:** Evolution of the concept or practice over time.  
 **Best for:** Specialists, educators, and language contributors.  

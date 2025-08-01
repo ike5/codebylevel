@@ -8,7 +8,7 @@ The `Y` value ranges from `0` to `4`, each corresponding to an increasing level 
 
 ---
 
-## 0 — High-Level Overview
+## 0: High-Level Overview
 
 **Purpose:** To introduce the concept and provide big-picture understanding.  
 **Best for:** Newbies, learners doing early research.  
@@ -20,7 +20,7 @@ The `Y` value ranges from `0` to `4`, each corresponding to an increasing level 
 
 ---
 
-## 1 — Structural Details
+## 1: Structural Details
 
 **Purpose:** To explain how the concept is built and interacts with other components.  
 **Best for:** Readers gaining confidence or writing their first implementations.  
@@ -32,7 +32,7 @@ The `Y` value ranges from `0` to `4`, each corresponding to an increasing level 
 
 ---
 
-## 2 — Technical Depth
+## 2: Technical Depth
 
 **Purpose:** To explore implementation details and internal decision points.  
 **Best for:** Intermediate to professional developers applying the concept in projects.  
@@ -44,7 +44,7 @@ The `Y` value ranges from `0` to `4`, each corresponding to an increasing level 
 
 ---
 
-## 3 — Full System View
+## 3: Full System View
 
 **Purpose:** To show how the concept fits into larger systems or production-grade use.  
 **Best for:** Experts who need to evaluate reliability, scalability, or integration.  
@@ -56,7 +56,7 @@ The `Y` value ranges from `0` to `4`, each corresponding to an increasing level 
 
 ---
 
-## 4 — Complete Specification
+## 4: Complete Specification
 
 **Purpose:** To fully document every known technical aspect of the concept.  
 **Best for:** Specialists, maintainers, and educators.  

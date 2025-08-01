@@ -4,16 +4,16 @@
 
 CodeByLevel uses a five-tier system to represent the intended audience for any given piece of documentation. These levels are inspired by the Developer Competency Matrix and are designed to ensure that content meets learners where they are — from complete beginners to recognized specialists.
 
-## A — Newbie
+## A: Newbie
 
 **Who they are:** Someone who has just heard about the topic or is encountering it for the first time.  
-**Inspired by:** Competency Matrix Levels 1–2  
+**Competency Matrix:** Levels 1–2  
 **Typical traits:**
 - May have watched a video or read an article on the topic
 - Familiar with terminology but cannot yet apply it
 - Needs foundational explanations, analogies, and clear goals
 
-## B — Learner / Junior Developer
+## B: Learner / Junior Developer
 
 **Who they are:** A beginner who has experimented a little with the topic but needs more structured guidance.  
 **Inspired by:** Levels 3–4  
@@ -22,7 +22,7 @@ CodeByLevel uses a five-tier system to represent the intended audience for any g
 - Understands basic syntax or steps but lacks fluency
 - Benefits from step-by-step examples and structured learning paths
 
-## C — Working Professional
+## C: Working Professional
 
 **Who they are:** A developer with practical experience using the concept regularly.  
 **Inspired by:** Level 5  
@@ -31,7 +31,7 @@ CodeByLevel uses a five-tier system to represent the intended audience for any g
 - Can troubleshoot basic issues and explain standard practices
 - Prefers documentation that is concise, precise, and focused on common use
 
-## D — Expert
+## D: Expert
 
 **Who they are:** An advanced developer or engineer who can handle complex use cases and mentor others.  
 **Inspired by:** Levels 6–7  
@@ -40,7 +40,7 @@ CodeByLevel uses a five-tier system to represent the intended audience for any g
 - Often solves problems that require pattern recognition and deep analysis
 - Looks for depth, flexibility, and nuanced documentation
 
-## E — Specialist / Authority
+## E: Specialist / Authority
 
 **Who they are:** A subject-matter expert, educator, or contributor to the advancement of the field.  
 **Inspired by:** Levels 8–9  
