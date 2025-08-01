@@ -2,14 +2,11 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-console = Console()
+err_console = Console(stderr=True)
 
 
 def main():
-    table = Table("Name", "Item")
-    table.add_row("[green]Rick[/green]", "Portal Gun :boom:")
-    table.add_row("Morty", "Plumbus")
-    console.print(table)
+    err_console.print("[red]Here is something written to the standard error[/red]")
 
 
 if __name__ == "__main__":
