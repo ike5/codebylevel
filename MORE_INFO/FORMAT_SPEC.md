@@ -36,40 +36,40 @@ tags: [ "lists", "comprehension", "syntax" ]
 
 The `level` field uses this pattern: `X.Y.Z`
 
-### X — [Developer Level](MORE_INFO/DEVELOPER_LEVEL.md) (Audience)
+### X — [Developer Level](DEVELOPER_LEVEL.md) (Audience)
 
 Represents who the documentation is for, based on experience or competency. Inspired by
 the [Developer Competency Matrix](https://competency.worktestlink.com):
 
-- `A` = [Newbie](MORE_INFO/DEVELOPER_LEVEL.md#a-newbie)  
-- `B` = [Learner / Junior](MORE_INFO/DEVELOPER_LEVEL.md#b-learner--junior-developer)  
-- `C` = [Working Professional](MORE_INFO/DEVELOPER_LEVEL.md#c-working-professional)  
-- `D` = [Expert](MORE_INFO/DEVELOPER_LEVEL.md#d-expert)  
-- `E` = [Specialist / Authority](MORE_INFO/DEVELOPER_LEVEL.md#e-specialist--authority)  
+- `A` = [Newbie](DEVELOPER_LEVEL.md#a-newbie)  
+- `B` = [Learner / Junior](DEVELOPER_LEVEL.md#b-learner--junior-developer)  
+- `C` = [Working Professional](DEVELOPER_LEVEL.md#c-working-professional)  
+- `D` = [Expert](DEVELOPER_LEVEL.md#d-expert)  
+- `E` = [Specialist / Authority](DEVELOPER_LEVEL.md#e-specialist--authority)  
 
-### Y — [Depth of Detail](MORE_INFO/DEPTH_OF_DETAIL.md)
+### Y — [Depth of Detail](DEPTH_OF_DETAIL.md)
 
 Describes how deep the explanation goes:
 
-- `0` = [High-level overview](MORE_INFO/DEPTH_OF_DETAIL.md#0-high-level-overview) (what it is, why it's useful)
-- `1` = [Structural details](MORE_INFO/DEPTH_OF_DETAIL.md#1-structural-details) (includes relationships, prototypes, or inheritance)
-- `2` = [Technical depth](MORE_INFO/DEPTH_OF_DETAIL.md#2-technical-depth) (multi-part logic, options, tradeoffs)
-- `3` = [Full system view](MORE_INFO/DEPTH_OF_DETAIL.md#3-full-system-view) (architecture, internals, limitations)
-- `4` = [Complete specification](MORE_INFO/DEPTH_OF_DETAIL.md#4-complete-specification) (internals, performance, edge cases, standard references)
+- `0` = [High-level overview](DEPTH_OF_DETAIL.md#0-high-level-overview) (what it is, why it's useful)
+- `1` = [Structural details](DEPTH_OF_DETAIL.md#1-structural-details) (includes relationships, prototypes, or inheritance)
+- `2` = [Technical depth](DEPTH_OF_DETAIL.md#2-technical-depth) (multi-part logic, options, tradeoffs)
+- `3` = [Full system view](DEPTH_OF_DETAIL.md#3-full-system-view) (architecture, internals, limitations)
+- `4` = [Complete specification](DEPTH_OF_DETAIL.md#4-complete-specification) (internals, performance, edge cases, standard references)
 
-### Z — [Style of Explanation](MORE_INFO/STYLE_OF_EXPLANATION.md)
+### Z — [Style of Explanation](STYLE_OF_EXPLANATION.md)
 
 Describes how the material is cognitively or pedagogically presented. Each style corresponds to a preferred way of internalizing or reasoning about the content.
 
-- `0` = [Narrative](MORE_INFO/STYLE_OF_EXPLANATION.md#0-narrative) — Story-based, analogy-driven, friendly walkthroughs  
-- `1` = [Structural](MORE_INFO/STYLE_OF_EXPLANATION.md#1-structural) — Diagrams, class hierarchies, component relationships  
-- `2` = [Procedural](MORE_INFO/STYLE_OF_EXPLANATION.md#2-procedural) — Step-by-step instructions or command sequences  
-- `3` = [Associative](MORE_INFO/STYLE_OF_EXPLANATION.md#3-associative) — Draws parallels to other known concepts or languages  
-- `4` = [Logical](MORE_INFO/STYLE_OF_EXPLANATION.md#4-logical) — Explains cause-effect, control flow, or decision-making logic  
-- `5` = [Pedagogical](MORE_INFO/STYLE_OF_EXPLANATION.md#5-pedagogical) — Includes questions, misconceptions, Q&A, contrast cases  
-- `6` = [Exploratory](MORE_INFO/STYLE_OF_EXPLANATION.md#6-exploratory) — Designed for interactive or self-guided tweaking and play  
-- `7` = [Critical](MORE_INFO/STYLE_OF_EXPLANATION.md#7-critical) — Focuses on performance, security, edge cases, and system trade-offs  
-- `8` = [Historical](MORE_INFO/STYLE_OF_EXPLANATION.md#8-historical) — Explains how and why the concept evolved over time
+- `0` = [Narrative](STYLE_OF_EXPLANATION.md#0-narrative) — Story-based, analogy-driven, friendly walkthroughs  
+- `1` = [Structural](STYLE_OF_EXPLANATION.md#1-structural) — Diagrams, class hierarchies, component relationships  
+- `2` = [Procedural](STYLE_OF_EXPLANATION.md#2-procedural) — Step-by-step instructions or command sequences  
+- `3` = [Associative](STYLE_OF_EXPLANATION.md#3-associative) — Draws parallels to other known concepts or languages  
+- `4` = [Logical](STYLE_OF_EXPLANATION.md#4-logical) — Explains cause-effect, control flow, or decision-making logic  
+- `5` = [Pedagogical](STYLE_OF_EXPLANATION.md#5-pedagogical) — Includes questions, misconceptions, Q&A, contrast cases  
+- `6` = [Exploratory](STYLE_OF_EXPLANATION.md#6-exploratory) — Designed for interactive or self-guided tweaking and play  
+- `7` = [Critical](STYLE_OF_EXPLANATION.md#7-critical) — Focuses on performance, security, edge cases, and system trade-offs  
+- `8` = [Historical](STYLE_OF_EXPLANATION.md#8-historical) — Explains how and why the concept evolved over time
 
 Multiple styles can be layered in content, but the primary Z value reflects the dominant instructional strategy.
 

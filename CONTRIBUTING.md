@@ -60,7 +60,7 @@ We review PRs promptly and appreciate detailed descriptions.
 
 ## Code of Conduct
 
-Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming, respectful community.
+Please adhere to our [Code of Conduct](MORE_INFO/CODE_OF_CONDUCT.md) to ensure a welcoming, respectful community.
 
 ---
 
