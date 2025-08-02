@@ -12,7 +12,6 @@ import re
 import tempfile
 import os
 from packaging.version import parse as parse_version
-from difflib import SequenceMatcher
 from rapidfuzz import fuzz
 
 # Custom YAML representer for multiline strings
