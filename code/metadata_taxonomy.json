@@ -1,0 +1,175 @@
+{
+  "feature": {
+    "api": {
+      "authentication": {
+        "oauth": {},
+        "jwt": {},
+        "basic": {},
+        "token-refresh": {}
+      },
+      "data-access": {
+        "crud": {},
+        "pagination": {},
+        "filtering": {},
+        "sorting": {}
+      },
+      "logging": {
+        "error-logging": {},
+        "access-logging": {},
+        "audit-logging": {}
+      },
+      "network": {
+        "retry": {},
+        "caching": {},
+        "timeout": {}
+      }
+    },
+    "ui": {
+      "components": {
+        "button": {},
+        "modal": {},
+        "form": {
+          "validation": {},
+          "submission": {}
+        },
+        "table": {
+          "sorting": {},
+          "filtering": {}
+        }
+      },
+      "themes": {
+        "dark-mode": {},
+        "light-mode": {}
+      }
+    },
+    "database": {
+      "schema": {
+        "migration": {},
+        "indexes": {},
+        "constraints": {}
+      },
+      "queries": {
+        "joins": {},
+        "transactions": {},
+        "optimization": {}
+      }
+    },
+    "security": {
+      "encryption": {
+        "symmetric": {},
+        "asymmetric": {},
+        "hashing": {}
+      },
+      "permissions": {
+        "role-based": {},
+        "attribute-based": {}
+      },
+      "vulnerabilities": {
+        "sql-injection": {},
+        "xss": {},
+        "csrf": {}
+      }
+    },
+    "performance": {
+      "profiling": {},
+      "caching": {},
+      "load-balancing": {}
+    },
+    "testing": {
+      "unit": {},
+      "integration": {},
+      "e2e": {},
+      "mocking": {}
+    },
+    "deployment": {
+      "docker": {},
+      "kubernetes": {},
+      "ci-cd": {}
+    }
+  },
+  "type": {
+    "class": {},
+    "function": {},
+    "enum": {},
+    "interface": {},
+    "struct": {},
+    "module": {},
+    "package": {},
+    "snippet": {},
+    "configuration": {}
+  },
+  "audience": {
+    "newbie": {},
+    "junior": {},
+    "professional": {},
+    "expert": {},
+    "researcher": {},
+    "contributor": {},
+    "manager": {}
+  },
+  "style": {
+    "logical": {},
+    "historical": {},
+    "narrative": {},
+    "tutorial": {},
+    "reference": {},
+    "faq": {},
+    "example-driven": {}
+  },
+  "detail": {
+    "low": {},
+    "medium": {},
+    "high": {},
+    "verbose": {}
+  },
+  "language": {
+    "python": {},
+    "swift": {},
+    "javascript": {},
+    "java": {},
+    "c++": {},
+    "go": {},
+    "rust": {},
+    "typescript": {},
+    "kotlin": {},
+    "ruby": {},
+    "c#": {},
+    "php": {}
+  },
+  "versioning": {
+    "semver": {
+      "major": {},
+      "minor": {},
+      "patch": {}
+    },
+    "calendar": {},
+    "custom": {}
+  },
+  "platform": {
+    "web": {},
+    "mobile": {
+      "ios": {},
+      "android": {}
+    },
+    "desktop": {
+      "windows": {},
+      "macos": {},
+      "linux": {}
+    },
+    "cloud": {
+      "aws": {},
+      "azure": {},
+      "gcp": {}
+    },
+    "embedded": {}
+  },
+  "tags": {
+    "performance": {},
+    "security": {},
+    "deprecated": {},
+    "experimental": {},
+    "stable": {},
+    "urgent": {},
+    "refactor": {}
+  }
+}

@@ -1,5 +1,4 @@
 from packaging.version import parse as parse_version
-import yaml
 from pathlib import Path
 import json
 import hashlib
@@ -14,13 +13,7 @@ import os
 from packaging.version import parse as parse_version
 from rapidfuzz import fuzz
 
-# Custom YAML representer for multiline strings
-def str_presenter(dumper, data):
-    if '\n' in data:  # multiline string
-        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
-    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
 
-yaml.add_representer(str, str_presenter)
 
 app = typer.Typer()
 console = Console()
@@ -38,13 +31,8 @@ def get_multiline_input_from_editor() -> str:
     return content
 
 
-def format_multiline_yaml(content: str, indent: int = 2) -> str:
-    lines = content.splitlines()
-    if len(lines) == 1:
-        return content  # single line, no need for block style
-    indent_str = " " * indent
-    indented_lines = [indent_str + line if line.strip() else "" for line in lines]
-    return "|\n" + "\n".join(indented_lines)
+def format_multiline_yaml(content: str) -> str:
+    return content.strip("\n")
 
 
 def hash_doc(doc: dict) -> str:
@@ -104,23 +92,26 @@ def add():
     console.print("[bold]Opening editor for documentation[/bold]. [bold blue]Save and close to continue[/bold blue]")
     content = get_multiline_input_from_editor()
 
-    doc = {
+    metadata = {
         "language": language.lower(),
         "version": version,
         "audience": audience,
         "detail": detail,
         "style": style,
         "title": title,
-        "content": format_multiline_yaml(content),
         "timestamp": datetime.timestamp(datetime.now()),
     }
 
-    doc_hash = hash_doc(doc)
-    file_path = DOCS_DIR / f"{language}_{version}_{doc_hash[:7]}.yaml"
+    doc_hash = hash_doc(metadata)
+    file_path = DOCS_DIR / f"{language}_{version}_{doc_hash[:7]}.cbl"
     file_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(file_path, "w") as f:
-        yaml.dump(doc, f, sort_keys=False)
+        for key, value in metadata.items():
+            f.write(f"### {key}: {value}\n")
+        f.write("\n@audience({})\n".format(audience))
+        f.write(content.strip() + "\n")
+        f.write("---end---\n")
 
     console.print(f"[green]✔ Documentation saved as:[/green] {file_path}")
     return file_path
@@ -174,30 +165,29 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
         console.print("[red]No documentation directory found.[/red]")
         raise typer.Exit()
 
-    files = list(DOCS_DIR.glob("*.yaml"))
+    files = list(DOCS_DIR.glob("*.cbl"))
     if not files:
         console.print("[yellow]No documentation files found.[/yellow]")
         raise typer.Exit()
 
     matches = []
     for file in files:
-        with open(file, "r") as f:
-            doc = yaml.safe_load(f)
-            if language and doc.get("language") != language.lower():
-                continue
-            if max_version and parse_version(doc.get("version")) >= parse_version(max_version):
-                continue
-            if title and not matches_title(doc.get("title", ""), title):
-                continue
-            matches.append((file, doc))
+        metadata, sections = parse_cbl_file(file)
+        if language and metadata.get("language") != language.lower():
+            continue
+        if max_version and parse_version(metadata.get("version")) >= parse_version(max_version):
+            continue
+        if title and not matches_title(metadata.get("title", ""), title):
+            continue
+        matches.append((file, metadata, sections))
 
     if not matches:
         console.print("[yellow]No documentation matched your search.[/yellow]")
         raise typer.Exit()
 
     console.print("[bold]Matched documentation titles:[/bold]")
-    for i, (_, doc) in enumerate(matches, start=1):
-        console.print(f"{i}. {doc.get('title', 'Untitled')}")
+    for i, (_, meta, _) in enumerate(matches, start=1):
+        console.print(f"{i}. {meta.get('title', 'Untitled')}")
 
     while True:
         choice = typer.prompt(f"Enter the number of the document to view (1-{len(matches)})")
@@ -205,22 +195,53 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
             break
         console.print(f"[red]Please enter a valid number between 1 and {len(matches)}[/red]")
 
-    selected_file, selected_doc = matches[int(choice) - 1]
+    selected_file, selected_meta, selected_sections = matches[int(choice) - 1]
 
-    console.rule(f"[bold green]{selected_doc.get('title', selected_file.name)}[/bold green]")
-    console.print(f"[blue]Language:[/blue] {selected_doc.get('language')}")
-    console.print(f"[blue]Version:[/blue] {selected_doc.get('version')}")
-    console.print(f"[blue]Audience:[/blue] {selected_doc.get('audience')}")
-    console.print(f"[blue]Detail:[/blue] {selected_doc.get('detail')}")
-    console.print(f"[blue]Style:[/blue] {selected_doc.get('style')}")
+    console.rule(f"[bold green]{selected_meta.get('title', selected_file.name)}[/bold green]")
+    console.print(f"[blue]Language:[/blue] {selected_meta.get('language')}")
+    console.print(f"[blue]Version:[/blue] {selected_meta.get('version')}")
+    console.print(f"[blue]Audience:[/blue] {selected_meta.get('audience')}")
+    console.print(f"[blue]Detail:[/blue] {selected_meta.get('detail')}")
+    console.print(f"[blue]Style:[/blue] {selected_meta.get('style')}")
     console.print("[blue]Content:[/blue]")
-    console.print(selected_doc.get("content"))
+    console.print(selected_sections.get(selected_meta["audience"], "[italic red]No content found for this audience[/italic red]"))
 
     edit_choice = typer.prompt("Do you want to edit this document? (y/N)").lower()
     if edit_choice == "y":
         editor = os.environ.get("EDITOR", "vim")
         subprocess.call([editor, str(selected_file)])
         console.print(f"[green]✔ Edited file saved:[/green] {selected_file}")
+
+
+# Function to parse .cbl files with metadata and audience-based sections
+def parse_cbl_file(path):
+    with open(path, "r") as f:
+        lines = f.read().splitlines()
+
+    metadata = {}
+    sections = {}
+    current_section = None
+    in_section = False
+
+    for line in lines:
+        if line.startswith("### "):
+            key, value = line[4:].split(":", 1)
+            metadata[key.strip()] = value.strip()
+        elif line.startswith("@audience(") and line.endswith(")"):
+            current_section = line[len("@audience("):-1]
+            sections[current_section] = []
+            in_section = True
+        elif line.strip() == "---end---":
+            in_section = False
+            current_section = None
+        elif in_section and current_section:
+            sections[current_section].append(line)
+
+    # Clean up sections
+    for key in sections:
+        sections[key] = "\n".join(sections[key])
+
+    return metadata, sections
 
 
 if __name__ == "__main__":
