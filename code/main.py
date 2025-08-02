@@ -13,11 +13,43 @@ import os
 from packaging.version import parse as parse_version
 from rapidfuzz import fuzz
 
-
+METADATA_TAXONOMY_PATH = Path("metadata_taxonomy.json")
 
 app = typer.Typer()
 console = Console()
 DOCS_DIR = Path("docs_by_level")
+
+
+def load_taxonomy():
+    if METADATA_TAXONOMY_PATH.exists():
+        with open(METADATA_TAXONOMY_PATH, "r") as f:
+            return json.load(f)
+    else:
+        return {}
+
+
+def complete_metadata_key(incomplete: str):
+    taxonomy = load_taxonomy()
+    suggestions = []
+
+    def traverse(path, subtree):
+        if not isinstance(subtree, dict):
+            return
+        for key in subtree:
+            full_path = f"{path}.{key}" if path else key
+            if full_path.startswith(incomplete):
+                suggestions.append(full_path)
+            traverse(full_path, subtree[key])
+
+    traverse("", taxonomy)
+    return suggestions
+
+
+@app.command()
+def select_metadata(
+    key: str = typer.Option(..., autocompletion=complete_metadata_key, help="Metadata key path to select")
+):
+    console.print(f"[green]Selected metadata key:[/green] {key}")
 
 
 def get_multiline_input_from_editor() -> str:
@@ -48,7 +80,9 @@ def matches_title(doc_title, search_title):
 
 
 @app.command()
-def add():
+def add(
+    metadata_path: str = typer.Option(..., autocompletion=complete_metadata_key, help="Metadata path from taxonomy")
+):
     console.rule("[bold blue]Add Documentation[/bold blue]")
 
     supported_languages = ["python", "swift", "javascript", "java", "c++"]
@@ -86,8 +120,6 @@ def add():
             break
         console.print(f"[red]Unsupported style. Choose from: {', '.join(supported_styles)}[/red]")
 
-    title = typer.prompt("Title for the documentation")
-
     # content = typer.prompt("Documentation content")
     console.print("[bold]Opening editor for documentation[/bold]. [bold blue]Save and close to continue[/bold blue]")
     content = get_multiline_input_from_editor()
@@ -98,7 +130,7 @@ def add():
         "audience": audience,
         "detail": detail,
         "style": style,
-        "title": title,
+        "metadata_path": metadata_path,
         "timestamp": datetime.timestamp(datetime.now()),
     }
 
@@ -177,7 +209,7 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
             continue
         if max_version and parse_version(metadata.get("version")) >= parse_version(max_version):
             continue
-        if title and not matches_title(metadata.get("title", ""), title):
+        if title and not matches_title(metadata.get("metadata_path", ""), title):
             continue
         matches.append((file, metadata, sections))
 
@@ -187,7 +219,7 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
 
     console.print("[bold]Matched documentation titles:[/bold]")
     for i, (_, meta, _) in enumerate(matches, start=1):
-        console.print(f"{i}. {meta.get('title', 'Untitled')}")
+        console.print(f"{i}. {meta.get('metadata_path', 'Untitled')}")
 
     while True:
         choice = typer.prompt(f"Enter the number of the document to view (1-{len(matches)})")
@@ -197,7 +229,7 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
 
     selected_file, selected_meta, selected_sections = matches[int(choice) - 1]
 
-    console.rule(f"[bold green]{selected_meta.get('title', selected_file.name)}[/bold green]")
+    console.rule(f"[bold green]{selected_meta.get('metadata_path', selected_file.name)}[/bold green]")
     console.print(f"[blue]Language:[/blue] {selected_meta.get('language')}")
     console.print(f"[blue]Version:[/blue] {selected_meta.get('version')}")
     console.print(f"[blue]Audience:[/blue] {selected_meta.get('audience')}")
