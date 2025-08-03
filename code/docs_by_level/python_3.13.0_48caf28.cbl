@@ -3,11 +3,9 @@
 ### audience: newbie
 ### detail: medium
 ### style: logical
-### title: This is a test
-### timestamp: 1754174430.990719
+### metadata_path: feature.security.encryption.hashing
+### timestamp: 1754200730.446343
 
 @audience(newbie)
-This
-	works
-		again testing
+hello
 ---end---

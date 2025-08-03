@@ -1,4 +1,4 @@
-from packaging.version import parse as parse_version
+from typing import List
 from pathlib import Path
 import json
 import hashlib
@@ -28,26 +28,26 @@ def load_taxonomy():
         return {}
 
 
-def complete_metadata_key(incomplete: str):
-    taxonomy = load_taxonomy()
-    suggestions = []
+def select_metadata_path(taxonomy: dict) -> str:
+    current = taxonomy
+    path_parts = []
 
-    def traverse(path, subtree):
-        if not isinstance(subtree, dict):
-            return
-        for key in subtree:
-            full_path = f"{path}.{key}" if path else key
-            if full_path.startswith(incomplete):
-                suggestions.append(full_path)
-            traverse(full_path, subtree[key])
+    while isinstance(current, dict) and current:
+        keys = list(current.keys())
+        console.print(f"\n[bold blue]Options:[/bold blue] {', '.join(keys)}")
+        choice = typer.prompt("Choose one")
+        if choice not in current:
+            console.print(f"[red]Invalid choice:[/red] {choice}. Please choose from: {keys}")
+            continue
+        path_parts.append(choice)
+        current = current[choice]
 
-    traverse("", taxonomy)
-    return suggestions
+    return ".".join(path_parts)
 
 
 @app.command()
 def select_metadata(
-    key: str = typer.Option(..., autocompletion=complete_metadata_key, help="Metadata key path to select")
+        key: str = typer.Option(..., help="Metadata key path to select")
 ):
     console.print(f"[green]Selected metadata key:[/green] {key}")
 
@@ -63,10 +63,6 @@ def get_multiline_input_from_editor() -> str:
     return content
 
 
-def format_multiline_yaml(content: str) -> str:
-    return content.strip("\n")
-
-
 def hash_doc(doc: dict) -> str:
     raw = json.dumps(doc, sort_keys=True).encode()
     return hashlib.sha1(raw).hexdigest()
@@ -80,9 +76,7 @@ def matches_title(doc_title, search_title):
 
 
 @app.command()
-def add(
-    metadata_path: str = typer.Option(..., autocompletion=complete_metadata_key, help="Metadata path from taxonomy")
-):
+def add():
     console.rule("[bold blue]Add Documentation[/bold blue]")
 
     supported_languages = ["python", "swift", "javascript", "java", "c++"]
@@ -123,6 +117,9 @@ def add(
     # content = typer.prompt("Documentation content")
     console.print("[bold]Opening editor for documentation[/bold]. [bold blue]Save and close to continue[/bold blue]")
     content = get_multiline_input_from_editor()
+
+    taxonomy = load_taxonomy()
+    metadata_path = select_metadata_path(taxonomy)
 
     metadata = {
         "language": language.lower(),
@@ -236,7 +233,8 @@ def read_filtered(language: str = typer.Option(None), max_version: str = typer.O
     console.print(f"[blue]Detail:[/blue] {selected_meta.get('detail')}")
     console.print(f"[blue]Style:[/blue] {selected_meta.get('style')}")
     console.print("[blue]Content:[/blue]")
-    console.print(selected_sections.get(selected_meta["audience"], "[italic red]No content found for this audience[/italic red]"))
+    console.print(
+        selected_sections.get(selected_meta["audience"], "[italic red]No content found for this audience[/italic red]"))
 
     edit_choice = typer.prompt("Do you want to edit this document? (y/N)").lower()
     if edit_choice == "y":

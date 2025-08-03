@@ -1,175 +1,126 @@
 {
-  "feature": {
-    "api": {
-      "authentication": {
-        "oauth": {},
-        "jwt": {},
-        "basic": {},
-        "token-refresh": {}
-      },
-      "data-access": {
-        "crud": {},
-        "pagination": {},
-        "filtering": {},
-        "sorting": {}
-      },
-      "logging": {
-        "error-logging": {},
-        "access-logging": {},
-        "audit-logging": {}
-      },
-      "network": {
-        "retry": {},
-        "caching": {},
-        "timeout": {}
-      }
-    },
-    "ui": {
-      "components": {
-        "button": {},
-        "modal": {},
-        "form": {
-          "validation": {},
-          "submission": {}
+  "taxonomy": {
+    "software_engineering": {
+      "knowledge_areas": {
+        "requirements": {
+          "elicitation_methods": ["interviews", "questionnaires", "workshops", "prototyping", "brainstorming", "focus_groups", "ethnography", "observation"],
+          "analysis_techniques": ["use_cases", "user_stories", "domain_modeling", "requirements_prioritization", "requirements_conflict_resolution"],
+          "specification_styles": ["natural_language", "semi_formal_models", "formal_specifications", "structured_text"],
+          "validation_methods": ["walkthroughs", "inspections", "prototypes", "model_checking"],
+          "features": {
+            "api": {
+              "authentication": {
+                "methods": ["OAuth2", "JWT", "Basic Auth", "SAML", "API Keys", "Mutual TLS"]
+              },
+              "data_access": {
+                "crud": {},
+                "pagination": {},
+                "filtering": {},
+                "sorting": {},
+                "rate_limiting": {}
+              }
+            }
+          }
         },
-        "table": {
-          "sorting": {},
-          "filtering": {}
+        "design": {
+          "architectural_patterns": ["layered", "microservices", "event_driven", "client_server", "peer_to_peer", "monolith"],
+          "design_principles": ["separation_of_concerns", "single_responsibility", "open_closed", "interface_segregation", "dependency_inversion"],
+          "detailed_design": {
+            "uml_diagrams": ["class", "sequence", "activity", "state", "deployment", "component"],
+            "notations": ["UML", "SysML", "BPMN", "ERD"]
+          },
+          "platforms": ["web", "mobile", "desktop", "cloud", "embedded", "IoT", "edge"],
+          "code_structure": {
+            "types": ["class", "function", "enum", "interface", "module", "package", "configuration", "macro", "decorator"]
+          },
+          "paradigms": {
+            "object_oriented": true,
+            "functional": true,
+            "procedural": true,
+            "logic": true,
+            "event_driven": true,
+            "reactive": true,
+            "declarative": true,
+            "imperative": true
+          }
+        },
+        "construction": {
+          "languages": {
+            "compiled": ["C", "C++", "Go", "Rust", "Swift", "Java"],
+            "interpreted": ["Python", "Ruby", "JavaScript", "PHP", "Perl"],
+            "functional": ["Haskell", "Elixir", "OCaml", "F#"],
+            "scripting": ["Bash", "PowerShell", "Zsh"],
+            "logic": ["Prolog", "Mercury"],
+            "hybrid": ["Kotlin", "Scala", "TypeScript"]
+          },
+          "build_tools": ["Make", "CMake", "Gradle", "Maven", "Ant", "npm", "yarn", "pip", "poetry"],
+          "source_code_management": ["Git", "Mercurial", "SVN", "Perforce"],
+          "documentation": {
+            "types": ["api_docs", "architecture_docs", "inline_comments", "readme", "changelog", "design_doc"],
+            "styles": ["logical", "historical", "narrative", "tutorial", "reference", "faq", "example_driven"],
+            "detail_level": ["low", "medium", "high", "verbose"]
+          },
+          "coding_practices": ["naming_conventions", "linting", "code_formatting", "pair_programming", "code_review"]
+        },
+        "testing": {
+          "testing_levels": ["unit", "integration", "system", "acceptance"],
+          "testing_types": ["functional", "non_functional", "regression", "exploratory", "usability", "security", "performance", "load", "stress", "chaos"],
+          "automation_frameworks": ["JUnit", "PyTest", "TestNG", "Mocha", "Jest", "Cypress", "Selenium", "Playwright"],
+          "mocking_strategies": ["mock", "stub", "spy", "fake"],
+          "coverage_metrics": ["line_coverage", "branch_coverage", "path_coverage", "mutation_coverage"],
+          "tools": ["SonarQube", "JaCoCo", "Codecov"]
+        },
+        "maintenance": {
+          "types": ["corrective", "adaptive", "perfective", "preventive"],
+          "refactoring_methods": ["rename", "extract_method", "inline_method", "move_method", "pull_up", "push_down"],
+          "performance": {
+            "profiling": ["memory", "CPU", "I/O"],
+            "metrics": ["latency", "throughput", "memory_usage", "cpu_usage", "load_time", "fps"]
+          },
+          "security": {
+            "vulnerabilities": ["sql_injection", "xss", "csrf", "buffer_overflow", "command_injection"],
+            "encryption": ["symmetric", "asymmetric", "hashing", "TLS", "SSL"],
+            "permissions": ["role_based", "attribute_based", "policy_based"]
+          },
+          "tools": ["Valgrind", "NewRelic", "AppDynamics", "Sentry", "Prometheus"]
+        },
+        "deployment": {
+          "models": ["on_premise", "cloud", "hybrid", "edge"],
+          "containerization": ["Docker", "Podman"],
+          "orchestration": ["Kubernetes", "Nomad", "Docker Swarm"],
+          "ci_cd": {
+            "tools": ["GitHub Actions", "GitLab CI", "Jenkins", "CircleCI", "TravisCI", "TeamCity", "Drone"],
+            "stages": ["checkout", "build", "test", "artifact_upload", "staging", "deploy", "monitor"]
+          },
+          "artifact_repository": ["Artifactory", "Nexus", "GitHub Packages", "Docker Hub"]
+        },
+        "configuration_management": {
+          "infrastructure_as_code": ["Terraform", "CloudFormation", "Pulumi", "Ansible"],
+          "secrets_management": ["Vault", "AWS Secrets Manager", "SOPS", "Doppler"],
+          "config_file_formats": ["YAML", "TOML", "INI", "JSON", "XML"]
         }
       },
-      "themes": {
-        "dark-mode": {},
-        "light-mode": {}
+      "crosscutting": {
+        "roles": {
+          "audience_levels": ["newbie", "junior", "mid_level", "senior", "lead", "principal", "architect", "manager"]
+        },
+        "tags": ["performance", "security", "deprecated", "experimental", "stable", "urgent", "refactor", "critical", "blocked", "approved"],
+        "versioning": {
+          "semver": {
+            "major": {},
+            "minor": {},
+            "patch": {},
+            "prerelease": {},
+            "build": {}
+          },
+          "calendar": {
+            "format": ["YYYY.MM.DD", "YY.MM", "YYYYMMDD"]
+          },
+          "custom": {
+            "scheme_description": "Arbitrary tagging used by internal teams"
+          }
+        }
       }
-    },
-    "database": {
-      "schema": {
-        "migration": {},
-        "indexes": {},
-        "constraints": {}
-      },
-      "queries": {
-        "joins": {},
-        "transactions": {},
-        "optimization": {}
-      }
-    },
-    "security": {
-      "encryption": {
-        "symmetric": {},
-        "asymmetric": {},
-        "hashing": {}
-      },
-      "permissions": {
-        "role-based": {},
-        "attribute-based": {}
-      },
-      "vulnerabilities": {
-        "sql-injection": {},
-        "xss": {},
-        "csrf": {}
-      }
-    },
-    "performance": {
-      "profiling": {},
-      "caching": {},
-      "load-balancing": {}
-    },
-    "testing": {
-      "unit": {},
-      "integration": {},
-      "e2e": {},
-      "mocking": {}
-    },
-    "deployment": {
-      "docker": {},
-      "kubernetes": {},
-      "ci-cd": {}
     }
-  },
-  "type": {
-    "class": {},
-    "function": {},
-    "enum": {},
-    "interface": {},
-    "struct": {},
-    "module": {},
-    "package": {},
-    "snippet": {},
-    "configuration": {}
-  },
-  "audience": {
-    "newbie": {},
-    "junior": {},
-    "professional": {},
-    "expert": {},
-    "researcher": {},
-    "contributor": {},
-    "manager": {}
-  },
-  "style": {
-    "logical": {},
-    "historical": {},
-    "narrative": {},
-    "tutorial": {},
-    "reference": {},
-    "faq": {},
-    "example-driven": {}
-  },
-  "detail": {
-    "low": {},
-    "medium": {},
-    "high": {},
-    "verbose": {}
-  },
-  "language": {
-    "python": {},
-    "swift": {},
-    "javascript": {},
-    "java": {},
-    "c++": {},
-    "go": {},
-    "rust": {},
-    "typescript": {},
-    "kotlin": {},
-    "ruby": {},
-    "c#": {},
-    "php": {}
-  },
-  "versioning": {
-    "semver": {
-      "major": {},
-      "minor": {},
-      "patch": {}
-    },
-    "calendar": {},
-    "custom": {}
-  },
-  "platform": {
-    "web": {},
-    "mobile": {
-      "ios": {},
-      "android": {}
-    },
-    "desktop": {
-      "windows": {},
-      "macos": {},
-      "linux": {}
-    },
-    "cloud": {
-      "aws": {},
-      "azure": {},
-      "gcp": {}
-    },
-    "embedded": {}
-  },
-  "tags": {
-    "performance": {},
-    "security": {},
-    "deprecated": {},
-    "experimental": {},
-    "stable": {},
-    "urgent": {},
-    "refactor": {}
   }
 }
